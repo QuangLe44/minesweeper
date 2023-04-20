@@ -193,6 +193,16 @@ public class UI {
 
             }
         });
+        
+        undo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Call the undo method from the CellCreation class
+                CellCreation.undo();
+                frame.repaint();
+            }
+        });
+        
         return topUI;
     }
 
