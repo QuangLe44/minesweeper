@@ -5,6 +5,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.Time;
 
 public class MineSweeper {
@@ -15,7 +18,7 @@ public class MineSweeper {
 
     // Setting up JFrame
     public static void frameStart(JFrame frame, int w, int h, int mine) {
-        frame.setTitle("MineSweeper By Group 3");
+        frame.setTitle("MineSweeper");
         // JFrame Setup
         width = w;
         height = h;
@@ -32,15 +35,48 @@ public class MineSweeper {
 
         // Timer to check if the game is over
         ActionListener timeIncrement = new ActionListener() {
+            boolean gameEnded = false;
             @Override
             public void actionPerformed(ActionEvent e) {
-                //If game has ended - stop timer neither you win or lose 
+                //If game has ended - stop timer
                 if(CellCreation.bombPressed || CellCreation.cellsPressed == ((width * height) - mines)) {
                     UI.timeCounter.stop();
+                    if (!gameEnded){
+                        gameEnded = true;
+                        if (CellCreation.bombPressed){
+                            // Pop up the message box indicating the player has lost the game
+                            JOptionPane optionPane = new JOptionPane("You lost!", JOptionPane.INFORMATION_MESSAGE, 
+                                                                    JOptionPane.DEFAULT_OPTION, null, new Object[] {"Close"});
+                            JDialog dialog = optionPane.createDialog("Game Over");
+                            dialog.addWindowListener(new WindowAdapter() {
+                                @Override
+                                public void windowClosing(WindowEvent e) {
+                                    frame.dispose();
+                                }
+                            });
+                            dialog.setVisible(true);
+                        }
+                        else {
+                            // Pop up the message box indicating the player has won the game
+                            JOptionPane optionPane = new JOptionPane("You won!", JOptionPane.INFORMATION_MESSAGE, 
+                                                                    JOptionPane.DEFAULT_OPTION, null, new Object[] {"Close"});
+                            JDialog dialog = optionPane.createDialog("Game Over");
+                            dialog.addWindowListener(new WindowAdapter() {
+                                @Override
+                                public void windowClosing(WindowEvent e) {
+                                    frame.dispose();
+                                }
+                            });
+                            dialog.setVisible(true);
+                        }
+                    } 
+                    else {
+                        frame.dispose();
+                    }
                 }
             }
         };
-        Timer gameTimer = new Timer(100, timeIncrement); //count 1 second 
+        Timer gameTimer = new Timer(100, timeIncrement);
         gameTimer.start();
 
     }
