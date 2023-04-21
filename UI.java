@@ -68,7 +68,7 @@ public class UI {
                 JLabel part2 = new JLabel("Press on the grid to reveal squares");
                 JLabel part3 = new JLabel("The numbers on the squares will help you avoid mines");
                 JLabel part4 = new JLabel("You win if you can find every green square!");
-                JLabel part5 = new JLabel("You lose if you click on a mine")
+                JLabel part5 = new JLabel("You lose if you click on a mine");
                 helpPanel.add(part1);
                 helpPanel.add(part2);
                 helpPanel.add(part3);
