@@ -47,6 +47,10 @@ public class CellCreation {
 
     // Logic of what happens when a button is pressed
     public static void listener(int x, int y, int width, int height, int mines, JButton[][] button, JPanel panel) {
+        ImageIcon imageicon = new ImageIcon("D:/Minesweeper1/Minesweeper/Minesweeper-main/minesweeper/src/Board/mine1.png");
+        Image image = imageicon.getImage();
+        Image newimg = image.getScaledInstance(width + 20, height + 20,  java.awt.Image.SCALE_SMOOTH);
+        ImageIcon icon = new ImageIcon(newimg);
         // If first click
         if(cellsPressed == 0 && button[x][y].getText().length() == 0) {
             // Bomb initializer
@@ -62,7 +66,8 @@ public class CellCreation {
                 for(int i = 0; i < bombIndex.length; i++) {
                     if(bombIndex[i].x == x && bombIndex[i].y == y && !bombPressed) {
                         bombPressed = true;
-                        button[x][y].setBackground(Color.RED);
+                        button[x][y].setBackground(Color.WHITE);
+                        button[x][y].setIcon(icon);
                         panel.remove(CellIndex.findIndex(x,y,width,height));
                         panel.add(button[x][y],CellIndex.findIndex(x,y,width,height));
                     }
@@ -95,9 +100,10 @@ public class CellCreation {
                 // For each cell on the grid
                 for(int i = 0; i < width; i++) {
                     for(int j = 0; j < height; j++) {
-                        // If cell is a bomb - Set cell to red
+                        // If cell is a bomb - Set bomb cell
                         if(Bomb.isBomb(i,j,bombIndex)) {
-                            button[i][j].setBackground(Color.RED);
+                            button[x][y].setBackground(Color.WHITE);
+                            button[x][y].setIcon(icon);
                         }
                         // Otherwise - set color to green and get its' text value
                         else {
@@ -124,7 +130,7 @@ public class CellCreation {
         // For each entry in the adjacency list
         for(int i = 0; i < adjacent.length; i++) {
             // If distance hasn't already been calculated
-            if(button[x][y].getText().equals("0") && !button[adjacent[i].x][adjacent[i].y].getBackground().toString().equals("java.awt.Color[r=0,g=255,b=0]")) {
+            if(button[x][y].getText().equals("0") && !button[adjacent[i].x][adjacent[i].y].getBackground().equals(Color.GREEN)) {
                 // Calculating the number of bombs that are near
                 int bombsNear = Bomb.adjacentBombs(bombIndex,adjacent[i],width,height);
                 if(bombsNear != 0) {
