@@ -124,7 +124,7 @@ public class UI {
                 JTextField mine = new JTextField();
 
                 // Custom difficulty acceptance
-                JButton custom = new JButton("Custom");
+                JButton custom = new JButton("Confirm");
 
                 selection.add(widthL);
                 selection.add(width);
