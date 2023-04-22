@@ -30,7 +30,7 @@ public class UI {
         GridLayout grid = new GridLayout(0,3);
 
         // Adding buttons and counters
-        JButton setup = new JButton("Setup");
+        JButton setup = new JButton("Choose difficulty");
         JButton help = new JButton("How to play");
         JButton reset = new JButton("Reset");
         JButton undo = new JButton("Undo");
