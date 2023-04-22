@@ -33,11 +33,13 @@ public class UI {
         JButton setup = new JButton("Setup");
         JButton help = new JButton("How to play");
         JButton reset = new JButton("Reset");
+        JButton undo = new JButton("Undo");
         JLabel numMines = new JLabel(Integer.toString(mines));
         JLabel time = new JLabel();
         topUI.add(setup);
         topUI.add(reset);
         topUI.add(help);
+        topUI.add(undo);
 
         // Reset Button Logic
         reset.addActionListener(new ActionListener() {
@@ -69,11 +71,13 @@ public class UI {
                 JLabel part3 = new JLabel("The numbers on the squares will help you avoid mines");
                 JLabel part4 = new JLabel("You win if you can find every green square!");
                 JLabel part5 = new JLabel("You lose if you click on a mine");
+                JLabel part6 = new JLabel("Press 'Undo' to undo the process");
                 helpPanel.add(part1);
                 helpPanel.add(part2);
                 helpPanel.add(part3);
                 helpPanel.add(part4);
                 helpPanel.add(part5);
+                helpPanel.add(part6);
                 helpMenu.add(helpPanel);
                 helpMenu.setVisible(true);
             }
