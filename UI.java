@@ -1,5 +1,4 @@
 import Board.CellCreation;
-import Board.Layout;
 
 import javax.swing.*;
 import java.awt.*;
