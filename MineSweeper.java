@@ -23,7 +23,7 @@ public class MineSweeper {
         width = w;
         height = h;
         mines = mine;
-        frame.setSize(600,600);
+        frame.setSize(800,600);
 
         // Top and side UI setup
         frame.add(UI.uiTop(mines, frame, width, height), BorderLayout.NORTH);
@@ -31,6 +31,7 @@ public class MineSweeper {
 
         // Add grid layout
         frame.add(Layout.cellLayout(width,height,mines,frame));
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
         // Timer to check if the game is over
